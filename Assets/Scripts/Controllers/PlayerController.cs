@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class PlayerController : Controller
 {
     // KeyCode variables to hold keys used to detect movement
@@ -13,8 +14,19 @@ public class PlayerController : Controller
     // Start is called before the first frame update
     public override void Start()
     {
+        // Check if there is a GameManager object
+        if (GameManager.instance != null)
+        {
+            // If there is, check if it has a list to track players
+            if (GameManager.instance.players != null)
+            {
+                // If there is, add this PlayerController to it
+                GameManager.instance.players.Add(this);
+            }
+        }
+
         // Runs the Start() function from the parent class
-        base.Start();
+        base.Start();   
     }
 
     // Update is called once per frame
@@ -25,6 +37,20 @@ public class PlayerController : Controller
 
         // Runs the Update() function from
         base.Update();
+    }
+
+    public void OnDestroy()
+    {
+        // Check if there is a GameManager object
+        if (GameManager.instance != null)
+        {
+            // If there is, check if it has a list to track players
+            if (GameManager.instance.players != null)
+            {
+                // If there is, remove this PlayerController to it
+                GameManager.instance.players.Remove(this);
+            }
+        }
     }
 
     // Checks if any KeyCode varible is being pressed

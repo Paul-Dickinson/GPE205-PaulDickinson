@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TankPawn : Pawn
 {
+    private bool isTouchingGround;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -16,21 +18,43 @@ public class TankPawn : Pawn
         base.Update();
     }
 
+    public void OnCollisionEnter()
+    {
+        isTouchingGround = true;
+    }
+
+    public void OnCollisionExit()
+    {
+        isTouchingGround = false;
+    }
+
     // Functions for moving forwards, moving backwards, turning clockwise, and turning counter-clockwise; respectively
     public override void MoveForward()
     {
-        Debug.Log("Move Forwards");
+        if(isTouchingGround == true)
+        {
+        mover.Move(transform.forward, moveSpeed);
+        }
     }
     public override void MoveBackward()
     {
-        Debug.Log("Move Backwards");
+        if(isTouchingGround == true)
+        {
+        mover.Move(transform.forward, -moveSpeed);
+        }
     }
     public override void TurnClockwise()
     {
-        Debug.Log("Turn Clockwise");
+        if(isTouchingGround == true)
+        {
+        mover.Rotate(turnSpeed);
+        }
     }
     public override void TurnCounterClockwise()
     {
-        Debug.Log("Turn Counter Clockwise");
+        if(isTouchingGround == true)
+        {
+        mover.Rotate(-turnSpeed);
+        }
     }
 }
