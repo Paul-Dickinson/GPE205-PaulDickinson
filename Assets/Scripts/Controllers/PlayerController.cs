@@ -11,6 +11,9 @@ public class PlayerController : Controller
     public KeyCode turnClockwiseKey;
     public KeyCode turnCounterClockwiseKey;
 
+    // Keycode variable for shooting
+    public KeyCode shootKey;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -39,8 +42,8 @@ public class PlayerController : Controller
         base.Update();
     }
 
-    public void OnDestroy()
-    {
+    public override void OnDestroy()
+    {        
         // Check if there is a GameManager object
         if (GameManager.instance != null)
         {
@@ -51,6 +54,8 @@ public class PlayerController : Controller
                 GameManager.instance.players.Remove(this);
             }
         }
+
+        base.OnDestroy();
     }
 
     // Checks if any KeyCode varible is being pressed
@@ -71,6 +76,10 @@ public class PlayerController : Controller
         if (Input.GetKey(turnCounterClockwiseKey))
         {
             pawn.TurnCounterClockwise();
+        }
+        if (Input.GetKeyDown(shootKey))
+        {
+            pawn.Shoot();
         }
     }
 }

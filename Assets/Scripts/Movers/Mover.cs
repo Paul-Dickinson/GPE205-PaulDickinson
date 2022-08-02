@@ -11,7 +11,7 @@ public abstract class Mover : MonoBehaviour
     // Move recieves a Vector3 and float to determine how the object should move
     public abstract void Move(Vector3 direction, float speed);
 
-    // Rotate recieves three floats and uses them to effect the pitch, yaw, and roll of the object
+    // Rotate recieves a float and uses it to determine the speed in which the object should rotate
     public abstract void Rotate(float turnSpeed);
 
 }

@@ -7,8 +7,10 @@ public class GameManager : MonoBehaviour
     // A static GameManager varable to store the one GameManager instance we want
     public static GameManager instance;
 
-    // List to hold all of our players
+    // List to hold all of our players, controllers, and Pawns
     public List<PlayerController> players;
+    public List<Controller> controllers;
+    public List<Pawn> pawns;
 
     private void Awake()
     {
@@ -16,7 +18,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             // If instance is empty, then there are no other GameManager objects
-
             // Delare that this instance is the instance
             instance = this;
 
