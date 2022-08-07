@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 7468366166618002107}
   - component: {fileID: 7468366166618002105}
   - component: {fileID: 7468366166618002104}
+  - component: {fileID: 6038993676615035071}
   m_Layer: 0
   m_Name: UATank
   m_TagString: Untagged
@@ -178,14 +179,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eeb6ce8ca45b6b4fa07375d75b526b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSpeed: 60
-  moveSpeed: 10
+  turnSpeed: 90
+  moveSpeed: 5
   mover: {fileID: 0}
   shooter: {fileID: 0}
+  noiseMaker: {fileID: 0}
   shellPrefab: {fileID: 1534270325081804665, guid: 56f36727b8385bc4b9b4bca6b6fdd491, type: 3}
-  fireForce: 1000
+  fireForce: 250
   damageDone: 50
   shellLifespan: 1.5
+  fireRate: 3
+  secondsPerShot: 0
+  shotAudibleDistance: 20
+  shotAudibleTime: 3
+  moveAudibleDistance: 10
+  idleAudibleDistance: 5
 --- !u!114 &7468366166618002107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,3 +234,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firepointTransform: {fileID: 7468366166449046362}
+--- !u!114 &6038993676615035071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7738765964063637255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3facfa3d09b4f784ba8ab02836b1939e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeDistance: 0

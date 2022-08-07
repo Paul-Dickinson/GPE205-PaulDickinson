@@ -13,6 +13,8 @@ public abstract class Pawn : MonoBehaviour
     public Mover mover;
     // Variable to hold the Shooter component
     public Shooter shooter;
+    // Variable to hold the NoiseMaker component
+    public NoiseMaker noiseMaker;
 
     // Variables for shooting a projectile
     public GameObject shellPrefab;
@@ -24,11 +26,17 @@ public abstract class Pawn : MonoBehaviour
     public float fireRate;
     public float secondsPerShot;
 
+    public float shotAudibleDistance;
+    public float shotAudibleTime;
+    public float moveAudibleDistance;
+    public float idleAudibleDistance;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
         mover = GetComponent<Mover>();
         shooter = GetComponent<Shooter>();
+        noiseMaker = GetComponent<NoiseMaker>();
 
         // Check if there is a GameManager object
         if (GameManager.instance != null)
@@ -72,4 +80,7 @@ public abstract class Pawn : MonoBehaviour
 
     // Method for shooting a projectile
     public abstract void Shoot();
+
+    // Method to rotate to a point
+    public abstract void RotateTowards(Vector3 targetPositon);
 }
