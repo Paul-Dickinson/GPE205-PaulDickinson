@@ -41,6 +41,17 @@ public class AIController : Controller
         // Run the parent (base) Start
         base.Start();
 
+        // Check if there is a GameManager object
+        if (GameManager.instance != null)
+        {
+            // If there is, check if it has a list to track AI controllers
+            if (GameManager.instance.aiControllers != null)
+            {
+                // If there is, add this AIController to it
+                GameManager.instance.aiControllers.Add(this);
+            }
+        }
+
         ChangeState(AIState.Idle);
         perceptionTimer = 0;
     }
@@ -60,6 +71,22 @@ public class AIController : Controller
         MakeDecisions();
         // Run the parent (base) Update
         base.Update();
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+
+        // Check if there is a GameManager object
+        if (GameManager.instance != null)
+        {
+            // If there is, check if it has a list to track AI controllers
+            if (GameManager.instance.aiControllers != null)
+            {
+                // If there is, remove this AIController to it
+                GameManager.instance.aiControllers.Remove(this);
+            }
+        }
     }
 
     public void MakeDecisions()

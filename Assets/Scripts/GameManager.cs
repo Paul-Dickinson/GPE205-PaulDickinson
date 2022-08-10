@@ -8,8 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     // List to hold all of our players, controllers, and Pawns
-    public List<PlayerController> players;
     public List<Controller> controllers;
+    public List<PlayerController> players;    
+    public List<AIController> aiControllers;
     public List<Pawn> pawns;
 
     private void Awake()
