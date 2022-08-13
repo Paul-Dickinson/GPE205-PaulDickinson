@@ -5,7 +5,7 @@ using UnityEngine;
 public class AIController : Controller
 {
     // Variables to hold the different states and which state the AI is currently in
-    public enum AIState { Idle, Chase, Attack, Patrol, ChooseTarget};
+    public enum AIState { Idle, Chase, Attack, Patrol, Flee, ChooseTarget};
     public AIState currentState;
     // Variable to hold when the state is changed
     private float lastStateChangeTime;
@@ -108,6 +108,9 @@ public class AIController : Controller
             case AIState.Attack:
                 DoAttackState();
                 break;
+            case AIState.Flee:
+                DoFleeState();
+                break;
             case AIState.ChooseTarget:
                 DoChangeTargetState();
                 break;
@@ -131,13 +134,16 @@ public class AIController : Controller
             }
 
             bool canSee = CanSee(pawn.transform.root.gameObject);
+            Debug.Log(canSee);
             if (canSee == true && objectsSeen.Contains(pawn) == false)
             {
                 objectsSeen.Add(pawn);
+                Debug.Log("Saw " + pawn);
             }
             else if (canSee == false && objectsSeen.Contains(pawn) == true)
             {
                 objectsSeen.Remove(pawn);
+                Debug.Log("Didn't see " + pawn);
             }
 
         }
@@ -318,11 +324,14 @@ public class AIController : Controller
         // If that angle is less than our field of view
         if (angleToTarget < fieldOfView)
         {
+            Debug.Log("In field of view");
             // Then cast a ray at the target
-            RaycastHit2D lineOfSight = Physics2D.Raycast(transform.position, agentToTargetVector, sightDistance);
+            Vector3 raycastPosition = new Vector3(0.0f,0.0f,0.5f);
+            RaycastHit2D lineOfSight = Physics2D.Raycast(transform.position + raycastPosition, agentToTargetVector, sightDistance);
             // If the ray hit the target
             if (lineOfSight.transform == target.transform)
             {
+                Debug.Log("Raycast hit");
                 return true;
             }
             else
@@ -332,6 +341,7 @@ public class AIController : Controller
         }
         else
         {
+            Debug.Log("Not in field of view");
             return false;
         }
     }

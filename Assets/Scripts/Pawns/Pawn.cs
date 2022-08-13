@@ -26,6 +26,7 @@ public abstract class Pawn : MonoBehaviour
     public float fireRate;
     public float secondsPerShot;
 
+    // Variables for NoiseMaker component
     public float shotAudibleDistance;
     public float shotAudibleTime;
     public float moveAudibleDistance;

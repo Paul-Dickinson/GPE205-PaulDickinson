@@ -23,7 +23,8 @@ public class TankPawn : Pawn
     public override void Update()
     {
         base.Update();
-        SetSound();        
+        SetSound();
+        shotTimer = shotTimer - Time.deltaTime;
     }
 
     // Functions for moving forwards, moving backwards, turning clockwise, and turning counter-clockwise; respectively
@@ -68,7 +69,6 @@ public class TankPawn : Pawn
 
     public void SetSound()
     {
-        shotTimer = shotTimer - Time.deltaTime;
         shotAudible = shotAudible - Time.deltaTime;
 
         // If a shot from this object is still audible

@@ -29,5 +29,7 @@ public class DamageOnHit : MonoBehaviour
         {
             otherHealthComponent.TakeDamage(damageDone, owner);
         }
+
+        Destroy(gameObject);
     }
 }
